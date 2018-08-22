@@ -1,0 +1,2 @@
+LoadModule emsserver_module /usr/lib/ems/libmod_emsserver.so
+LoadModule emsconsole_module /usr/lib/ems/libmod_emsconsole.so
