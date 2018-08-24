@@ -15,9 +15,8 @@ RUN apt-get -y update \
     && apt-get -y autoremove \
     && apt-get -y autoclean
 ADD . /tmp
+COPY httpd.conf /usr/local/apache2/conf
 RUN cd /tmp \
-    && cat ems.load >> /usr/local/apache2/conf/httpd.conf \
-    && cat ems.conf >> /usr/local/apache2/conf/httpd.conf \
     && curl -L \
     https://github.com/golang-migrate/migrate/releases/download/v3.4.0/migrate.linux-amd64.tar.gz > \
     /tmp/migrate.tar.gz \
