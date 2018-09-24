@@ -11,10 +11,21 @@ RUN apt-get -y update \
     xterm \
     libpq5 \
     sqlite3 \
-    libmongoc-1.0-0 \
     && ln -s /usr/lib/x86_64-linux-gnu/libpq.so.5 /usr/lib/x86_64-linux-gnu/libpq.so \
     && apt-get -y autoremove \
-    && apt-get -y autoclean
+    && apt-get -y autoclean \
+    && curl -L  http://ftp.br.debian.org/debian/pool/main/y/yajl/libyajl2_2.1.0-2+b3_amd64.deb > \
+    /tmp/libyaj.deb \
+    && dpkg -i /tmp/libyaj.deb  \
+    && curl -L  http://ftp.br.debian.org/debian/pool/main/libb/libbson/libbson-1.0-0_1.4.2-1_amd64.deb > \
+    /tmp/libbson.deb \
+    && dpkg -i /tmp/libbson.deb  \
+    && curl -L  http://ftp.br.debian.org/debian/pool/main/o/openssl/libssl1.1_1.1.0f-3+deb9u2_amd64.deb > \
+    /tmp/libssl.deb \
+    && dpkg -i /tmp/libssl.deb \
+    && curl -L  http://ftp.br.debian.org/debian/pool/main/libm/libmongoc/libmongoc-1.0-0_1.4.2-1+b1_amd64.deb > \
+    /tmp/libmongoc.deb \
+    && dpkg -i /tmp/libmongoc.deb
 ADD . /tmp
 COPY httpd.conf /usr/local/apache2/conf
 RUN cd /tmp \
