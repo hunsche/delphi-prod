@@ -25,7 +25,9 @@ RUN apt-get -y update \
     && dpkg -i /tmp/libssl.deb \
     && curl -L  http://ftp.br.debian.org/debian/pool/main/libm/libmongoc/libmongoc-1.0-0_1.4.2-1+b1_amd64.deb > \
     /tmp/libmongoc.deb \
-    && dpkg -i /tmp/libmongoc.deb
+    && dpkg -i /tmp/libmongoc.deb \
+    && ln -s /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so.0 /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so \
+    && ln -s /usr/lib/x86_64-linux-gnu/libbson-1.0.so.0 /usr/lib/x86_64-linux-gnu/libbson-1.0.so
 ADD . /tmp
 COPY httpd.conf /usr/local/apache2/conf
 RUN cd /tmp \
